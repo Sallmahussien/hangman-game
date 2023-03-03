@@ -1,0 +1,398 @@
+:root {
+  --body-thickness: 4px;
+  --body-color: #222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Tahoma, sans-serif;
+  margin: auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.container {
+  width: 1000px;
+  min-height: 554.67px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+@media (max-width: 991px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  padding: 20px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  .game-info {
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .game-info .game-name {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.game-info .category span,
+.game-info .highest-score span {
+  font-weight: bold;
+  color: #e91e63;
+  text-transform: capitalize;
+}
+
+hr {
+  border: 1px solid #eee;
+}
+
+.row {
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+.row .hangman-draw {
+  flex: 1;
+  background-color: #f8f8f8;
+  padding: 20px;
+  height: 320px;
+}
+
+@media (max-width: 767px) {
+  .row .hangman-draw {
+    height: 220px;
+  }
+}
+
+.hangman-draw .the-draw {
+  width: 60px;
+  height: 280px;
+  border-bottom: var(--body-thickness) solid var(--body-color);
+  margin: auto;
+  position: relative;
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .hangman-draw .the-draw {
+    height: 180px;
+  }
+}
+
+.hangman-draw .the-draw.wrong-1 {
+  display: block;
+}
+
+.the-draw .stand {
+  height: 100%;
+  width: var(--body-thickness);
+  background-color: var(--body-color);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+
+.the-draw.wrong-2 .stand {
+  display: block;
+}
+
+.the-draw .hang {
+  width: 60px;
+  height: 30px;
+  border-top: var(--body-thickness) solid var(--body-color);
+  border-right: var(--body-thickness) solid var(--body-color);
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  display: none;
+}
+
+.the-draw.wrong-3 .hang {
+  display: block;
+}
+
+.the-draw .rope,
+.the-draw .head {
+  border-radius: 50%;
+  border: var(--body-thickness) dashed var(--body-color);
+  position: absolute;
+}
+
+.the-draw .rope {
+  width: 50px;
+  height: 50px;
+  top: 50px;
+  left: 63px;
+  display: none;
+}
+
+.the-draw.wrong-4 .rope {
+  display: block;
+}
+
+.the-draw .head {
+  width: 35px;
+  height: 35px;
+  border-style: solid;
+  top: 58px;
+  left: 71px;
+  display: none;
+}
+
+.the-draw.wrong-5 .head {
+  display: block;
+}
+
+.the-draw .body {
+  height: 100px;
+  width: var(--body-thickness);
+  background-color: var(--body-color);
+  position: absolute;
+  left: 86px;
+  top: 89px;
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .the-draw .body {
+    height: 60px;
+  }
+}
+
+.the-draw.wrong-6 .body {
+  display: block;
+}
+
+.the-draw .hands {
+  display: none;
+}
+
+.the-draw.wrong-7 .hands {
+  display: block;
+}
+
+.the-draw .hands::before,
+.the-draw .hands::after {
+  content: "";
+  width: var(--body-thickness);
+  height: 30px;
+  background-color: var(--body-color);
+  position: absolute;
+  top: 109px;
+}
+
+.the-draw .hands::before {
+  transform: rotate(30deg);
+  left: 78px;
+}
+
+.the-draw .hands::after {
+  transform: rotate(-30deg);
+  left: 94px;
+}
+
+.the-draw .legs {
+  display: none;
+}
+
+.the-draw.wrong-8 .legs {
+  display: block;
+}
+
+.the-draw .legs::before,
+.the-draw .legs::after {
+  content: "";
+  width: var(--body-thickness);
+  height: 30px;
+  background-color: var(--body-color);
+  position: absolute;
+  top: 184px;
+}
+
+.the-draw .legs::before {
+  transform: rotate(30deg);
+  left: 78px;
+}
+
+.the-draw .legs::after {
+  transform: rotate(-30deg);
+  left: 94px;
+}
+
+@media (max-width: 767px) {
+  .the-draw .hands::before,
+  .the-draw .hands::after {
+    height: 25px;
+  }
+  .the-draw .hands::before {
+    left: 80px;
+  }
+  .the-draw .hands::after {
+    left: 92px;
+  }
+  .the-draw .legs::before,
+  .the-draw .legs::after {
+    height: 25px;
+    top: 146px;
+  }
+  .the-draw .legs::before {
+    left: 79px;
+  }
+  .the-draw .legs::after {
+    left: 92px;
+  }
+}
+
+.row .letters {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .row .letters {
+    padding: 10px;
+  }
+}
+
+.row .letters span {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  color: white;
+  background-color: rgb(10, 201, 207);
+  font-weight: bold;
+  font-size: 23px;
+  text-align: center;
+  line-height: 50px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .row .letters span {
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+    line-height: 30px;
+  }
+}
+
+.row .letters span.clicked {
+  background-color: black;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.letters-guess {
+  margin: 10px auto;
+  background-color: #f8f8f8;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 104px;
+}
+
+@media (max-width: 767px) {
+  .letters-guess {
+    padding: 10px;
+    min-height: 50px;
+    flex-wrap: wrap;
+  }
+}
+
+.letters-guess span {
+  width: 60px;
+  height: 60px;
+  background-color: #e9e9e9e9;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: capitalize;
+  border-bottom: 3px solid var(--body-color);
+  transition: 0.3s;
+}
+
+@media (max-width: 767px) {
+  .letters-guess span {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 17px;
+  }
+}
+
+.letters-guess span.space {
+  background-color: transparent;
+  border: none;
+}
+
+.popup {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 30%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.popup div {
+  width: 450px;
+  height: 200px;
+  background-color: rgb(10, 201, 207);
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+@media (max-width: 767px) {
+  .popup div {
+    width: calc(100% - 20px);
+  }
+}
+
+.popup div button {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: #eee;
+  font-size: 23px;
+  font-weight: bold;
+  display: block;
+  padding: 5px;
+  margin: 15px auto;
+  cursor: pointer;
+}
